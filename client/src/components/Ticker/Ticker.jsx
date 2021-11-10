@@ -1,3 +1,53 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
+import tickersSelectors from "../../redux/tickersSelector";
+import tickersActions from "../../redux/tickersActions";
+import style from "./Ticker.module.css";
 
+const Ticker = ({ ticker }) => {
+  const dispatch = useDispatch();
+  const switchedList = useSelector(tickersSelectors.getStopedTickers);
+  const isswitchedOf = switchedList.includes(ticker.ticker);
+
+  const changes = (ticker.price - ticker.change).toFixed(2);
+
+  const handleSwitchingTicker = (tickerName) => {
+    console.log("isswitchedOf", switchedList);
+    isswitchedOf
+      ? dispatch(tickersActions.removeTickersSuccess(tickerName))
+      : dispatch(tickersActions.addTickersSuccess(tickerName));
+  };
+
+  return (
+    <li key={ticker.name} className={style.element}>
+      <div className={style.container}>
+        <p className={style.value}>{ticker.ticker}</p>
+      </div>
+      <p className={style.container}>Price: {ticker.price}$</p>
+      <p className={style.container}>Today: {changes}$</p>
+      <div className={`${style.container} ${style.changedContainer}`}>
+        <p
+          className={style.value}
+          style={{
+            backgroundColor: changes > 0 ? "#137333" : "#c5221f",
+          }}
+        >
+          {changes > 0 ? (
+            <AiOutlineArrowUp style={{ color: "#FFFFFF" }} />
+          ) : (
+            <AiOutlineArrowDown style={{ color: "#FFFFFF" }} />
+          )}
+          {Number(ticker.change_percent).toFixed(2)}
+        </p>
+      </div>
+{/* 
+      <button
+        name="pause"
+        onClick={() => handleSwitchingTicker(ticker.ticker)}
+      >
+        stop this
+      </button> */}
+    </li>
+  );
+};
+export default Ticker;

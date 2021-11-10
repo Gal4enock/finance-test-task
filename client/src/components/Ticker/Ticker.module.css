@@ -1,0 +1,23 @@
+.element {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 0;
+  border: 1px solid black;
+  padding: 15px;
+}
+
+.container {
+  min-width: 120px;
+}
+.value {
+  background-color: orange;
+  border-radius: 5px;
+  padding: 5px 10px;
+  width: max-content;
+}
+
+.changedContainer .value {
+  margin-left: auto;
+}
+

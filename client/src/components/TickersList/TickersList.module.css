@@ -1,5 +1,6 @@
 .list {
   list-style: none;
   min-width: 500px;
+  margin: 0 auto;
   max-width: fit-content;
 }

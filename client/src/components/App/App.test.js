@@ -1,8 +1,16 @@
 import { render, screen } from '@testing-library/react';
+import { Provider } from "react-redux";
+import ticketStore from "../../redux/store";
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+const renderComponent = (component, { store = ticketStore } = {}) => {
+  return {
+    ...render(<Provider store={store}>{component}</Provider>),
+    store,
+  };
+};
+
+test('renders tickers', () => {
+  render(renderComponent(<App />));
+  screen.debug();
 });
