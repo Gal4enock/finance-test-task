@@ -1,22 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
-import tickersSelectors from "../../redux/tickersSelector";
-import tickersActions from "../../redux/tickersActions";
 import style from "./Ticker.module.css";
 
 const Ticker = ({ ticker }) => {
-  const dispatch = useDispatch();
-  const switchedList = useSelector(tickersSelectors.getStopedTickers);
-  const isswitchedOf = switchedList.includes(ticker.ticker);
-
+ 
   const changes = (ticker.price - ticker.change).toFixed(2);
-
-  const handleSwitchingTicker = (tickerName) => {
-    console.log("isswitchedOf", switchedList);
-    isswitchedOf
-      ? dispatch(tickersActions.removeTickersSuccess(tickerName))
-      : dispatch(tickersActions.addTickersSuccess(tickerName));
-  };
 
   return (
     <li key={ticker.name} className={style.element}>
@@ -40,13 +27,6 @@ const Ticker = ({ ticker }) => {
           {Number(ticker.change_percent).toFixed(2)}
         </p>
       </div>
-{/* 
-      <button
-        name="pause"
-        onClick={() => handleSwitchingTicker(ticker.ticker)}
-      >
-        stop this
-      </button> */}
     </li>
   );
 };

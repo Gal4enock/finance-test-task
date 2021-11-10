@@ -5,6 +5,7 @@
   margin: 5px 0;
   border: 1px solid black;
   padding: 15px;
+  box-shadow: 5px 9px 20px rgba(0, 0, 0, 0.15);
 }
 
 .container {
@@ -14,7 +15,7 @@
   background-color: orange;
   border-radius: 5px;
   padding: 5px 10px;
-  width: max-content;
+  width: 60px;
 }
 
 .changedContainer .value {
