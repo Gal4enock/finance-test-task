@@ -1,15 +1,26 @@
 import { createAction} from "@reduxjs/toolkit";
 
 
-const renderTickers = createAction("tickers/render");
-const addTickers = createAction("tickers/add");
-const removeTickers = createAction("tickers/remove");
-
+const renderTickersRequest = createAction("tickers/renderRequest");
+const renderTickersSuccess = createAction("tickers/renderSuccess");
+const renderTickersError = createAction("tickers/renderError");
+const addTickersRequest = createAction("tickers/addRequest");
+const addTickersSuccess = createAction("tickers/addSuccess");
+const addTickersError = createAction("tickers/addError");
+const removeTickersRequest = createAction("tickers/removeRequest");
+const removeTickersSuccess = createAction("tickers/removeSuccess");
+const removeTickersError = createAction("tickers/removeError");
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  renderTickers,
-  addTickers,
-  removeTickers
+  renderTickersRequest,
+  renderTickersSuccess,
+  renderTickersError,
+  addTickersRequest,
+  addTickersSuccess,
+  addTickersError,
+  removeTickersRequest,
+  removeTickersSuccess,
+  removeTickersError
 };
 

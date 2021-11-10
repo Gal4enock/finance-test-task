@@ -1,21 +1,22 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import fetchTickers from '../../redux/tickersOperation';
+import selctors from '../../redux/tickersSelector';
 import './App.css';
 
 function App() {
+  const tickers = useSelector(selctors.getTickers);
+  console.log("tickers from app", tickers);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchTickers())
+  }, [dispatch]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {tickers?.length > 0 ?
+        <h1>Tickers Table</h1> :
+        <p>Sorry, no tickers found</p> }
     </div>
   );
 }

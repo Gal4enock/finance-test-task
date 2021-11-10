@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { tickersReducer } from './tickersReducer';
+import tickersReducer from './tickersReducer';
 
 export const store = configureStore({
   reducer: {
