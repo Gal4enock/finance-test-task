@@ -1,8 +1,7 @@
 import React from "react";
 import { configureStore, createReducer } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-import tickersReducer from '../../redux/tickersReducer';
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import tickerssActions from '../../redux/tickersActions';
 import Ticker from './Ticker.jsx';
 
@@ -39,7 +38,6 @@ const startingStore = configureStore({
   }
 });
 
-
 function renderWithRedux(component,
   { initialState, store = startingStore } ={}) {
   return {
@@ -49,7 +47,8 @@ function renderWithRedux(component,
 
   it('renders Ticker component', async () => {
     const { getByText } = renderWithRedux(<Ticker ticker={startingState[0]}/>);
-    // expect(screen.getByText(/Price:/i)).toBeInDocument();
-    // expect(screen.getByText(/Today:/i)).toBeInDocument();
+    expect(getByText(/Price:/i)).toHaveTextContent(startingState[0].price);
+    expect(getByText(/Today:/i)).toHaveTextContent(
+      (startingState[0].price - startingState[0].change).toFixed(2));
 
   })
